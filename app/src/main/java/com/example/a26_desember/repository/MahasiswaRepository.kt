@@ -15,7 +15,7 @@ interface MahasiswaRepository {
 
     suspend fun getMahasiswabyNim(nim: String): Mahasiswa
 
-    class NetworkKontakRepository(
+    class NetworkMahasiswaRepository(
         private val mahasiswaApiService: MahasiswaService
     ) : MahasiswaRepository {
         override suspend fun insertMahasiswa(mahasiswa: Mahasiswa) {
