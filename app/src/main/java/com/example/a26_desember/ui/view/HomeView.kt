@@ -16,8 +16,10 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Delete
+import androidx.compose.material3.Button
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
@@ -38,13 +40,21 @@ object DestinasiHome : DestinasiNavigasi {
     override val titleRes = "Home Mhs"
 }
 
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+fun HomeScreen(
+    navigateToItemEntry: ()-> Unit,
+    modifier: Modifier = Modifier,
+    onDetailClick: (String) -> Unit
+)
+
 @Composable
 fun HomeStatus(
     homeUiState: HomeUiState,
     retryAction: ()-> Unit,
     modifier: Modifier = Modifier,
     onDeleteClick: (Mahasiswa) -> Unit,
-    onDetailClick: (Mahasiswa) -> Unit
+    onDetailClick: (String) -> Unit
 ) {
     when(homeUiState) {
         is HomeUiState.Loading-> OnLoading(modifier = modifier.fillMaxSize())
@@ -68,7 +78,7 @@ fun HomeStatus(
                     }
                 )
             }
-        is HomeUiState.Error-> OnErrorAction(retryAction, modifier = modifier.fillMaxSize())
+        is HomeUiState.Error-> OnError(retryAction, modifier= modifier.fillMaxSize())
     }
 }
 
@@ -89,8 +99,14 @@ fun OnError(retryAction: () -> Unit, modifier: Modifier = Modifier) {
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         Image(
-            painter = painterResource(id = R.drawable.)
+            painter = painterResource(id = R.drawable.ic_connection_error), contentDescription = ""
         )
+
+        Text(text = stringResource(R.string.loading_failed), modifier = Modifier.padding(16.dp))
+
+        Button(onClick = retryAction) {
+            Text(stringResource(R.string.retry))
+        }
     }
 }
 
