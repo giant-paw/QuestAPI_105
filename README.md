@@ -1,6 +1,6 @@
 <h1>Progress</h1>
 
-<h2>29 Januari ( Belum Berfungsi fitur Detail & Update )</h2>
+<h2>29 Desember ( Belum Berfungsi fitur Detail & Update )</h2>
 
 <p>- Tampilan Loading & Database Connection Error : </p>
 
