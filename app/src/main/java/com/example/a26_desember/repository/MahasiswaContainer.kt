@@ -11,7 +11,7 @@ interface AppContainer {
 }
 
 class MahasiswaContainer: AppContainer{
-    private val baseUrl = "http://10.0.2.2:8806/umyTI/"
+    private val baseUrl = "http://192.168.37.232/umyTI/"
 
     private val json = Json { ignoreUnknownKeys = true }
 
